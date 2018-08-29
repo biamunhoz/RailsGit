@@ -1,0 +1,191 @@
+<html>
+<head>
+  <meta charset='utf-8' />
+</head>
+
+<body>
+
+<style>
+
+    body {
+        font-family: 'OpenSansRegular';
+        font-size: 15px;
+    }
+
+    .table-bordered {
+        font-family: 'OpenSansRegular';
+        font-size: 13px;
+        padding: 1em;
+        border-collapse: collapse;
+    }
+
+</style>
+
+<table width="90%" class=" table table-bordered"  >
+  <tr>
+    <td></td>
+    <td><strong>CADASTRAMENTO DE USUÁRIOS DE DOSÍMETRO PESSOAL</strong></td>
+    <td><strong>NÚMERO</strong> </td>
+  </tr>
+
+</table>
+
+<br>
+
+
+<table width="100%" class=" table table-bordered">
+  <tr>
+    <td><strong>1 - CADASTRO:</strong></td>
+    <td><strong>2 - SIGLA DO LABORATÓRIO FORNECEDOR DO DOSÍMETRO:</strong></td>
+  </tr>
+  <tr>
+    <td>
+      <% if @monitoracao.estado == "INCLUSAO" %>
+          INCLUSÃO - I
+      <% elsif @monitoracao.estado == "EXCLUSAO" %>
+          EXCLUSÃO - E
+      <% elsif @monitoracao.estado == "ALTERACAO" %>
+          ALTERAÇÃO - A
+      <% end %>
+    </td>
+    <td>
+      <%= @monitoracao.siglalab %>
+    </td>
+  </tr>
+
+</table>
+
+<br>
+
+<table width="100%" class=" table table-bordered">
+  <tr>
+    <td><strong>3 - NOME DO USUÁRIO:</strong></td>
+  </tr>
+  <tr>
+    <td><%= @monitoracao.nome %></td>
+  </tr>
+</table>
+
+<br>
+
+<table width="100%" class=" table table-bordered">
+  <tr>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td><strong>4 - DATA DE NASCIMENTO:</strong></td>
+        <td><strong>5 - SEXO:</strong></td>
+    <% end %>
+    <td><strong>6 - TEM CPF PRÓPRIO?</strong> </td>
+    <td><strong>7 - MATRÍCULA (CPF SE FOR PRÓPRIO):</strong></td>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td><strong>8 - INÍCIO DE TRAB. C/ RADIAÇÃO:</strong></td>
+        <td><strong>9 - TIPO DE MONITOR:</strong></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td><%= @monitoracao.datanasc.strftime("%d/%m/%Y") %></td>
+        <td><%= @monitoracao.sexo.upcase %></td>
+    <% end %>
+    <td>SIM - S</td>
+    <td><%= @monitoracao.cpf %></td>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td>MÊS: <%= @monitoracao.iniciomes %> /  ANO: <%= @monitoracao.inicioano %></td>
+        <td><%= @monitoracao.tipomonitor %></td>
+    <% end %>
+  </tr>
+
+</table>
+<br>
+
+<table width="100%" class=" table table-bordered">
+  <tr>
+    <td><strong>10 - NÚMERO DE REGISTRO DA INSTITUIÇÃO NA CNEN</strong></td>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td><strong>11 - NOME DA INSTITUIÇÃO SETOR:</strong></td>
+        <td><strong>12 - ÁREA DE APLICAÇÃO:</strong></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td><%= @monitoracao.numcnen %></td>
+    <%  if @monitoracao.estado != "EXCLUSAO" %>
+        <td><%= @monitoracao.nomeinstituicao %></td>
+        <td><%= @monitoracao.areaaplicacao %></td>
+    <% end %>
+  </tr>
+</table>
+
+<br>
+
+<%  if @monitoracao.estado != "EXCLUSAO" %>
+    <table width="40%" class=" table table-bordered">
+      <tr>
+        <td><strong>13 - TIPOS DA RADIAÇÃO:</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <%= @monitoracao.tiporadiacao %>
+        </td>
+      </tr>
+    </table>
+
+    <br>
+    <table width="40%" class=" table table-bordered">
+      <tr>
+        <td><strong>14 - FUNÇÃO: </strong></td>
+        <td><strong>CÓDIGO:</strong></td>
+      </tr>
+      <tr>
+        <td><%= @monitoracao.funcao %></td>
+        <td><%= @monitoracao.codfuncao %></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table width="40%" class=" table table-bordered">
+      <tr>
+        <td><strong>15 - APLICAÇÃO DA RADIAÇÃO:</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <%= @monitoracao.aplicacaoradiacao %>
+        </td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table width="90%" class=" table table-bordered">
+      <tr>
+        <td><strong>16 - DESCRIÇÃO DA OCUPAÇÃO: (Quais radioativos trabalha)</strong></td>
+      </tr>
+      <tr>
+        <td>
+          <%= @monitoracao.descricaouso %>
+        </td>
+      </tr>
+    </table>
+
+<% end %>
+<br>
+
+<table width="95%" class=" table table-bordered">
+  <tr>
+    <td><strong>LOCAL:</strong></td>
+    <td><strong>DATA:</strong></td>
+    <td><strong>ASSINATURA:</strong></td>
+  </tr>
+  <tr>
+    <td><%= @monitoracao.local.upcase %></td>
+    <td><%= Time.now.strftime("%d/%m/%Y") %></td>
+    <td>________________________________________________________________________________________________ </td>
+  </tr>
+</table>
+
+<br>
+<p>CNEM - 145</p>
+
+</body>
+</html>

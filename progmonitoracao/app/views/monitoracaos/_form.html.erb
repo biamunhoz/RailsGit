@@ -1,0 +1,185 @@
+<script language="javascript">
+    $(function() {
+        $(".datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: "dd/mm/yyyy",
+            language: 'pt-BR'
+        })
+    });
+
+
+    $(function()
+    {
+        $('[name="naolembro"]').change(function()
+        {
+            if ($(this).is(':checked')) {
+
+                $('#monitoracao_iniciomes').attr('disabled', true);
+                $('#monitoracao_inicioano').prop('disabled',  true);
+
+            }
+            else {
+                $('#monitoracao_iniciomes').attr('disabled', false);
+                $('#monitoracao_inicioano').prop('disabled',  false);
+            };
+        });
+    });
+
+
+</script>
+
+
+<%= form_for(@monitoracao) do |f| %>
+  <% if @monitoracao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@monitoracao.errors.count, "error") %> prohibited this monitoracao from being saved:</h2>
+
+      <ul>
+      <% @monitoracao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome, "Nome do usuário" %><br>
+    <%= f.text_field :nome, class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :datanasc, "Data de nascimento" %><br>
+    <%= f.text_field :datanasc, class: 'datepicker', :value => (@monitoracao.datanasc.blank? ? '' : @monitoracao.datanasc.strftime('%d/%m/%Y')) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sexo, "Sexo" %><br>
+    <%= f.select :sexo, ([['Feminino'],['Masculino']]), class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cpf, "CPF" %><br>
+
+    <% if session[:admin] == true %>
+        <%= f.text_field :cpf, class:"form-control"  %>
+    <% else %>
+        <%= f.hidden_field :cpf, value: session[:cpf], class: 'form-control' %>
+        <%= session[:cpf] %>
+    <% end %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :labeliniciomes, "Início de uso (Mês):" %><br>
+    <%= f.text_field :iniciomes, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :labelinicioano, "Início de uso (Ano):" %><br>
+    <%= f.text_field :inicioano, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= check_box_tag :naolembro, true, false %> Não lembro início de uso
+  </div>
+
+  <div class="field">
+    <%= f.label :documentocpf, "Anexe uma cópia do seu CPF" %>
+    <%= f.file_field :documentocpf, class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipomonitor, "Tipo de monitor" %><br>
+    <%= f.select :tipomonitor, ([['TLD - Tórax', 2], ['TLD - Pulseira', 6]]), class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :departamento, "Departamento" %><br>
+    <%= f.select :departamento,([['Anatomia'],['Biologia Celular'],['Farmacologia'],['Fisiologia'], ['Imunologia'],['Microbiologia'], ['Parasitologia'],['Biotecnologia'], ['Biotério'],['CEFAP']]), :include_blank => true, class:"form-control"  %>
+  </div>
+
+  <!--div class="field">
+    < %= f.label :docente, "Docente responsável pelo laboratório" %><br>
+    < %= f.text_field :docente, class:"form-control"  %>
+  </div-->
+
+  <div class="field">
+    <%= f.label :laboratorio, "Nome do laboratório" %><br>
+    <%= f.text_field :laboratorio, class:"form-control"  %>
+  </div>
+
+  <!--div class="field">
+    < %= f.label :emaildocente, "E-mail do docente" %><br>
+    < %= f.text_field :emaildocente, class:"form-control"  %>
+  </div-->
+
+  <div class="field">
+    <%= f.label :funcao, "Função" %><br>
+    <%= f.select :funcao,([['Iniciação Científica'],['Mestrado'],['Doutorado'],['Pós Doutorado'], ['Docente'],['Funcionário'], ['Outros']]), :include_blank => true, class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :outrafunc, "Outra função: (Caso tenha escolhido a opção outros no campo Função)" %><br>
+    <%= f.text_field :outrafunc, class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tiporadiacao, "Tipo de radiação" %><br>
+
+    <%= f.hidden_field :tiporadiacao, value: 'GAMA - G e RAIO-X - X', class: 'form-control' %>
+    <%= 'GAMA - G e RAIO-X - X' %>
+
+    <!-- %= f.select :tiporadiacao,([['ALFA - A'],['BETA - B'],['GAMA - G'],['RAIO-X - X'], ['NEUTRON - N']]), class:"form-control"  %-->
+  </div>
+
+  <div class="field">
+    <%= f.label :descricaouso, "Descrição de uso de radionuclídeos que serão usados e finalidades: (Ex: Radioimunoensaio, marcador, traçador)" %><br>
+    <%= f.text_area :descricaouso, class:"form-control", rows:"3", placeholder: "Radionuclídeos que serão usados e finalidades", class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "E-mail" %><br>
+
+    <% if session[:admin] == true %>
+        <%= f.text_field :email, class:"form-control"  %>
+
+    <% else %>
+        <%= f.hidden_field :email, value: session[:email], class: 'form-control' %>
+        <%= session[:email] %>
+
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :possuidosimetro, "Já possui dosimetro ? " %><br>
+    <%= f.select :possuidosimetro,([['Sim', true],['Não', false]]), class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :coddostemp, "Se sua resposta foi sim: Qual o código de identificação do seu dosímetro pessoal? " %><br>
+    <%= f.text_field :coddostemp, class:"form-control"  %>
+  </div>
+
+  <% if session[:admin] == true %>
+
+      <div class="field">
+        <%= f.label :numcnen, "Número de registro na instituição na CNEN" %><br>
+        <%= f.text_field :numcnen, class:"form-control"  %>
+      </div>
+
+      <!--div class="field">
+        < %= f.label :dosimetro_id, "Dosimetro" %><br>
+        < %= f.select("dosimetro_id", Dosimetro.all.collect {|l| [ l.nome, l.id ] }, {:class => "form-control"})  %>
+      </div-->
+
+      <div class="field">
+        <%= f.label :status_id, "Status" %><br>
+        <%= f.select("status_id", Status.all.collect {|l| [ l.descricao, l.id ] }, {:class => "form-control"})  %>
+      </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class:"btn btn-success active" %>
+  </div>
+<% end %>

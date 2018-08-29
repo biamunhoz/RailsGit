@@ -1,0 +1,11 @@
+<% if session[:admin] == true %>
+
+    <li class="lead"> <%= link_to "Usuários", usuarios_path %></li>
+    <li class="lead"> <%= link_to "Dosimetro", dosimetros_path %> </li>
+    <li class="lead"> <%= link_to "Status", statuses_path %> </li>
+
+<% end %>
+
+<li class="lead"> <%= link_to "Dados", monitoracaos_path %> </li>
+<li class="lead"> <%= link_to "Sair" , logout_path %></li>
+

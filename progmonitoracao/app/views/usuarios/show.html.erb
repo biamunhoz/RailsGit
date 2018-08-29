@@ -1,0 +1,33 @@
+
+<p>
+  <strong>Nome:</strong>
+  <%= @usuario.nome %>
+</p>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= @usuario.email %>
+</p>
+
+<p>
+  <strong>CPF:</strong>
+  <%= @usuario.cpf %>
+</p>
+
+<p>
+  <strong>Telefone de trabalho:</strong>
+  <%= @usuario.ddfixo %> <%= @usuario.telfixo %>
+</p>
+
+<p>
+  <strong>Celular:</strong>
+  <%= @usuario.ddcel %> <%= @usuario.telcelular %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @usuario.admin == true ? 'Administrador' : 'Usuário comum' %>
+</p>
+
+<%= link_to 'Editar', edit_usuario_path(@usuario), class:'btn btn-primary active'  %> |
+<%= link_to 'Continuar', usuarios_path, class: 'btn btn-default' %>

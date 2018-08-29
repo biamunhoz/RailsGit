@@ -1,0 +1,144 @@
+<% if session[:admin] == true %>
+    <p>
+      <strong>Sigla do laboratório fornecedor do dosímetro:</strong>
+      <%= @monitoracao.siglalab %>
+    </p>
+<% end %>
+
+<p>
+  <strong>Nome do usuário:</strong>
+  <%= @monitoracao.nome %>
+</p>
+
+<p>
+  <strong>Data de nascimento:</strong>
+  <%= @monitoracao.datanasc.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= @monitoracao.sexo %>
+</p>
+
+<p>
+  <strong>Matrícula (CPF):</strong>
+  <%= @monitoracao.cpf %>
+</p>
+
+<p>
+  <strong>Cópia do CPF:</strong>
+  <% if @monitoracao.documentocpf.present? %>
+      <!--%= link_to "Arquivo", @monitoracao.documentocpf.url, target: '_blank' %-->
+      <%= link_to "Arquivo carregado", "http://bernard.icb.usp.br/monitoracao/system/documentocpf/#{@monitoracao.id}/original/#{@monitoracao.documentocpf_file_name}", target: '_blank' %>
+  <% else %>
+      Sem arquivo carregado
+  <% end %>
+</p>
+
+<% if session[:admin] == true %>
+    <p>
+      <strong>Inicio de trabalho com radiação:</strong>
+      <%= @monitoracao.iniciomes %> /  <%= @monitoracao.inicioano %>
+    </p>
+<% end %>
+
+<p>
+  <strong>Tipo de monitor:</strong>
+  <%= @monitoracao.tipomonitor %>
+</p>
+
+<% if session[:admin] == true %>
+    <p>
+      <strong>Número de registro na instituição na CNEN:</strong>
+      <%= @monitoracao.numcnen %>
+    </p>
+
+
+    <p>
+      <strong>Nome da instituição do setor:</strong>
+      <%= @monitoracao.nomeinstituicao %>
+    </p>
+<% end %>
+
+<p>
+  <strong>Departamento:</strong>
+  <%= @monitoracao.departamento %>
+</p>
+
+<!--p>
+  <strong>Docente responsável pelo laboratório:</strong>
+  < %= @monitoracao.docente %>
+</p-->
+
+<p>
+  <strong>Nome do laboratório:</strong>
+  <%= @monitoracao.laboratorio %>
+</p>
+
+<!--p>
+  <strong>E-mail do docente:</strong>
+  < %= @monitoracao.emaildocente %>
+</p-->
+
+<% if session[:admin] == true %>
+    <p>
+      <strong>Área de aplicação:</strong>
+      <%= @monitoracao.areaaplicacao %>
+    </p>
+
+    <p>
+      <strong>Tipos de radiação:</strong>
+      <%= @monitoracao.tiporadiacao %>
+    </p>
+
+    <p>
+      <strong>Função:</strong>
+      <%= @monitoracao.funcao %>
+    </p>
+
+    <% if @monitoracao.funcao == 'Outros' %>
+
+        <p>
+          <strong>Outra função:</strong>
+          <%= @monitoracao.outrafunc %>
+        </p>
+
+    <% end %>
+
+    <p>
+      <strong>Código da função:</strong>
+      <%= @monitoracao.codfuncao %>
+    </p>
+<% end %>
+
+<p>
+  <strong>Aplicação da radiação:</strong>
+  <%= @monitoracao.aplicacaoradiacao %>
+</p>
+
+<p>
+  <strong>Descrição de uso:</strong>
+  <%= @monitoracao.descricaouso %>
+</p>
+
+<% if session[:admin] == true %>
+    <p>
+      <strong>Local:</strong>
+      <%= @monitoracao.local %>
+    </p>
+<% end %>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= @monitoracao.email %>
+</p>
+
+<% if session[:admin] == true %>
+    <!--p>
+      <strong>Dosimetro:</strong>
+      < %= @monitoracao.dosimetro == nil ? "Sem dosimetro relacionado" : @monitoracao.dosimetro.nome %>
+    </p-->
+<% end %>
+
+
+<%= link_to 'Continuar', monitoracaos_path, class: 'btn btn-default' %>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MONITORAÇÃO</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+
+    <ul class="nav navbar-nav">
+      <% if session[:usuario_id] != nil %>
+
+          <%= render 'layouts/user_navbar' %>
+
+      <% else  %>
+          <h2 class="nav navbar-text"> <span id="titulo"> Sistema de monitoração </span> </h2>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<% if notice.present? %>
+    <div class="alert alert-info">
+      <%= notice  %>
+    </div>
+<% end %>
+
+<div style="margin-left:45px; width:95%;">
+  <%= yield %>
+</div>
+
+
+
+</body>
+</html>
+
+

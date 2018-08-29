@@ -1,0 +1,28 @@
+<%= form_for(@dosimetro) do |f| %>
+  <% if @dosimetro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dosimetro.errors.count, "error") %> prohibited this dosimetro from being saved:</h2>
+
+      <ul>
+      <% @dosimetro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome, "Código do dosimetro" %><br>
+    <%= f.text_field :nome , class:"form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monitoracao_id, "Relacionar com " %><br>
+    <%= f.select :monitoracao_id, options_from_collection_for_select(Monitoracao.all.order(:nome), :id, :nome, selected: f.object.monitoracao_id), include_blank: true %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class:"btn btn-success active" %>
+  </div>
+<% end %>

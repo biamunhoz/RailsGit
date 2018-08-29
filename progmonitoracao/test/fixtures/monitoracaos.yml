@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  siglalab: MyString
+  nome: MyString
+  datanasc: 2017-11-16
+  sexo: MyString
+  cpf: MyString
+  iniciomes: 1
+  inicioano: 1
+  tipomonitor: 1
+  departamento: MyString
+  coddept: MyString
+  docente: MyString
+  emaildocente: MyString
+  nomeinstituicao: MyString
+  areaaplicacao: MyString
+  tiporadiacao: MyString
+  funcao: MyString
+  codfuncao: MyString
+  aplicacaoradiacao: MyString
+  descricaouso: MyText
+  local: MyString
+  email: MyString
+
+two:
+  siglalab: MyString
+  nome: MyString
+  datanasc: 2017-11-16
+  sexo: MyString
+  cpf: MyString
+  iniciomes: 1
+  inicioano: 1
+  tipomonitor: 1
+  departamento: MyString
+  coddept: MyString
+  docente: MyString
+  emaildocente: MyString
+  nomeinstituicao: MyString
+  areaaplicacao: MyString
+  tiporadiacao: MyString
+  funcao: MyString
+  codfuncao: MyString
+  aplicacaoradiacao: MyString
+  descricaouso: MyText
+  local: MyString
+  email: MyString

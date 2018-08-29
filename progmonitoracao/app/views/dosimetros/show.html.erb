@@ -1,0 +1,12 @@
+<p>
+  <strong>Código:</strong>
+  <%= @dosimetro.nome %>
+</p>
+
+<p>
+  <strong>Relacionado com:</strong>
+  <%= @dosimetro.monitoracao == nil ? "Vago" : @dosimetro.monitoracao.nome %>
+</p>
+
+<%= link_to 'Editar', edit_dosimetro_path(@dosimetro), class:'btn btn-primary active'  %> |
+<%= link_to 'Continuar', dosimetros_path, class: 'btn btn-default' %>
