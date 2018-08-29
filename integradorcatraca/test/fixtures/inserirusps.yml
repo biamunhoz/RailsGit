@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numusp: MyString
+  nome: MyString
+  classe: MyString
+  unidadedi: MyString
+  numuspvia: MyString
+  identificador: MyString
+  unidadeproffit: MyString
+
+two:
+  numusp: MyString
+  nome: MyString
+  classe: MyString
+  unidadedi: MyString
+  numuspvia: MyString
+  identificador: MyString
+  unidadeproffit: MyString

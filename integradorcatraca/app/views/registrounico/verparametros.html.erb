@@ -1,0 +1,20 @@
+<h1>Verificar registro unico</h1>
+<%= form_tag :action => 'importarregistro' do %>
+
+    <div class="fiel">
+
+      <div class="field">
+        <%= label_tag("Numero usp") %>
+        <%= text_field_tag 'numusp' %>
+
+        <%= label_tag("Via") %>
+        <%= text_field_tag 'via' %>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Importar" %>
+    </div>
+
+<% end %>
